@@ -14,7 +14,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.source>17</maven.compiler.source>
-        <junit.version>6.1.3</junit.version>
+        <junit.version>5.10.2</junit.version>
+        <langchain4j.version>1.22.0</langchain4j.version>
     </properties>
 
     <dependencyManagement>
@@ -22,7 +23,7 @@
             <dependency>
                 <groupId>dev.langchain4j</groupId>
                 <artifactId>langchain4j-bom</artifactId>
-                <version>1.0.0-beta2</version>
+                <version>${langchain4j.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -30,44 +31,34 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Dépendances Jakarta EE / JAX-RS / CDI -->
+        <!-- Jakarta EE API (JAX-RS / CDI) -->
         <dependency>
-            <groupId>jakarta.enterprise</groupId>
-            <artifactId>jakarta.enterprise.cdi-api</artifactId>
-            <version>4.1.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.ws.rs</groupId>
-            <artifactId>jakarta.ws.rs-api</artifactId>
-            <version>4.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>6.1.0</version>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>11.0.0</version>
             <scope>provided</scope>
         </dependency>
 
-        <!-- LangChain4j Core & Google Gemini (versions gérées par le BOM) -->
+        <!-- LangChain4j Core -->
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j</artifactId>
         </dependency>
+
+        <!-- Intégration Google GenAI (Gemini) -->
         <dependency>
             <groupId>dev.langchain4j</groupId>
-            <artifactId>langchain4j-google-ai-gemini</artifactId>
+            <artifactId>langchain4j-google-genai</artifactId>
         </dependency>
 
-        <!-- SLF4J / Logback pour le logging -->
+        <!-- Logging Logback -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.5.16</version>
+            <version>1.5.6</version>
         </dependency>
 
-        <!-- Tests unitaires JUnit -->
+        <!-- Tests Unitaires JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
