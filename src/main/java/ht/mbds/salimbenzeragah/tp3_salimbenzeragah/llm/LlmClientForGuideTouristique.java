@@ -48,14 +48,17 @@ public class LlmClientForGuideTouristique implements Serializable {
                 .build();
     }
 
-    public String demanderInfos(String villeOuPays) {
+    public String demanderInfos(String villeOuPays, int nbEndroits) {
         if (villeOuPays == null || villeOuPays.isBlank()) {
             throw new IllegalArgumentException("La ville ou le pays ne peut pas être vide.");
+        }
+        if (nbEndroits <= 0) {
+            throw new IllegalArgumentException("Le nombre d'endroits à visiter doit être supérieur à 0.");
         }
         if (guideTouristique == null) {
             initialiserAssistant();
         }
-        return guideTouristique.demanderInfos(villeOuPays);
+        return guideTouristique.demanderInfos(villeOuPays, nbEndroits);
     }
 
     @Serial
